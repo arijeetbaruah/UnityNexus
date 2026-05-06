@@ -1,5 +1,5 @@
 <!-- omit in toc -->
-# Contributing to Math Engine
+# Contributing to Unity Nexus
 
 First off, thanks for taking the time to contribute! ❤️
 
