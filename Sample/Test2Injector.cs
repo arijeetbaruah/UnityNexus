@@ -1,26 +1,21 @@
 using Baruah.Nexus.Attributes;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Baruah.Nexus.Sample
 {
     [Injectable]
     public class Test2Injectable
     {
-        private InputActionAsset _go;
-        private string _name;
+        private Color _color;
         
-        public Test2Injectable(InputActionAsset go, string name)
+        public Test2Injectable(Color color)
         {
-            _go = go;
-            _name = name;
-            
-            Debug.Log("Test2Injectable");
+            _color = color;
         }
         
-        public void DoSomething()
+        public void DoSomething(Material material)
         {
-            Debug.Log($"Hello {_name}!");
+            material.color = _color;
         }
     }
 }

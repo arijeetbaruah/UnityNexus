@@ -61,6 +61,7 @@ namespace Baruah.Nexus
     {
         Primitive,
         UnityObject,
+        CustomClass,
         Injectable  // resolved from container at runtime
     }
  
@@ -76,6 +77,8 @@ namespace Baruah.Nexus
         public int     intValue;
         public float   floatValue;
         public bool    boolValue;
+        public Color    colorValue;
+        public ParameterDatum[] childParameters;
  
         // Unity objects (GameObject, Component, ScriptableObject, etc.)
         [SerializeField] public UnityEngine.Object unityObjectValue;
@@ -86,27 +89,50 @@ namespace Baruah.Nexus
             {
                 case ParameterSourceKind.UnityObject:
                     return unityObjectValue;
-
+ 
                 case ParameterSourceKind.Primitive:
                     Type type = Type.GetType(typeName);
-
-                    if (type == typeof(int)) return intValue;
-                    if (type == typeof(float)) return floatValue;
-                    if (type == typeof(bool)) return boolValue;
+                    if (type == typeof(int))    return intValue;
+                    if (type == typeof(float))  return floatValue;
+                    if (type == typeof(bool))   return boolValue;
                     if (type == typeof(string)) return stringValue;
-
+                    if (type == typeof(Color)) return colorValue;
                     Debug.LogError($"[NexusInjector] Unsupported primitive type: {typeName}");
                     return null;
-
+ 
+                case ParameterSourceKind.CustomClass:
+                    return ConstructCustomClass();
+ 
                 case ParameterSourceKind.Injectable:
-                    Debug.LogError(
-                        $"[NexusInjector] Parameter '{parameterName}' must be resolved from the container — call ToObject(IDiContainer) instead.");
+                    Debug.LogError($"[NexusInjector] Parameter '{parameterName}' must be resolved from the container.");
                     return null;
-
+ 
                 default:
                     Debug.LogError($"[NexusInjector] Unknown ParameterSourceKind on '{parameterName}'.");
                     return null;
             }
+        }
+        
+        private object ConstructCustomClass()
+        {
+            Type type = Type.GetType(typeName);
+            if (type == null)
+            {
+                Debug.LogError($"[NexusInjector] Could not resolve type: {typeName}");
+                return null;
+            }
+ 
+            object instance = Activator.CreateInstance(type);
+ 
+            var fields = type.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            for (int i = 0; i < fields.Length && i < childParameters.Length; i++)
+            {
+                object value = childParameters[i].ToObject();
+                if (value != null)
+                    fields[i].SetValue(instance, value);
+            }
+ 
+            return instance;
         }
     }
 }

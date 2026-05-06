@@ -379,26 +379,62 @@ MonoBehaviour:
       intValue: 0
       floatValue: 0
       boolValue: 0
+      colorValue: {r: 0, g: 0, b: 0, a: 0}
+      childParameters: []
       unityObjectValue: {fileID: 6878704399972093174, guid: 197f11e8e8547f44d8d6565318abaf3b, type: 3}
   - className: Baruah.Nexus.Sample.Test2Injectable, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     parameters:
-    - parameterName: go
-      typeName: UnityEngine.InputSystem.InputActionAsset, Unity.InputSystem, Version=1.18.0.0,
-        Culture=neutral, PublicKeyToken=null
-      sourceKind: 1
+    - parameterName: color
+      typeName: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      sourceKind: 0
       stringValue: 
       intValue: 0
       floatValue: 0
       boolValue: 0
-      unityObjectValue: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - parameterName: name
-      typeName: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
-      sourceKind: 0
-      stringValue: test
-      intValue: 0
-      floatValue: 0
-      boolValue: 0
+      colorValue: {r: 1, g: 0, b: 0, a: 1}
+      childParameters:
+      - parameterName: r
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        sourceKind: 0
+        stringValue: 
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        colorValue: {r: 0, g: 0, b: 0, a: 0}
+        childParameters: []
+        unityObjectValue: {fileID: 0}
+      - parameterName: g
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        sourceKind: 0
+        stringValue: 
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        colorValue: {r: 0, g: 0, b: 0, a: 0}
+        childParameters: []
+        unityObjectValue: {fileID: 0}
+      - parameterName: b
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        sourceKind: 0
+        stringValue: 
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        colorValue: {r: 0, g: 0, b: 0, a: 0}
+        childParameters: []
+        unityObjectValue: {fileID: 0}
+      - parameterName: a
+        typeName: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+        sourceKind: 0
+        stringValue: 
+        intValue: 0
+        floatValue: 0
+        boolValue: 0
+        colorValue: {r: 0, g: 0, b: 0, a: 0}
+        childParameters: []
+        unityObjectValue: {fileID: 0}
       unityObjectValue: {fileID: 0}
 --- !u!4 &861031993
 Transform:
